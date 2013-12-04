@@ -22,10 +22,8 @@
 		9327AAB8184C5152006C31C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9327AAB6184C5152006C31C9 /* InfoPlist.strings */; };
 		9327AABA184C5152006C31C9 /* SKSpriteBlendModeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9327AAB9184C5152006C31C9 /* SKSpriteBlendModeTests.m */; };
 		9327AAC4184C5180006C31C9 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9327AAC3184C5180006C31C9 /* SpriteKit.framework */; };
+		93331874184F95AD00625A7E /* RGB.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 93331873184F95AD00625A7E /* RGB.atlas */; };
 		93CE1E7B184ECB0300EA1BE9 /* SKSpriteNode+UIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CE1E7A184ECB0300EA1BE9 /* SKSpriteNode+UIImageView.m */; };
-		93CE1E85184EED6E00EA1BE9 /* tex_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE1E82184EED6E00EA1BE9 /* tex_b.png */; };
-		93CE1E86184EED6E00EA1BE9 /* tex_g.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE1E83184EED6E00EA1BE9 /* tex_g.png */; };
-		93CE1E87184EED6E00EA1BE9 /* tex_r.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE1E84184EED6E00EA1BE9 /* tex_r.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,11 +55,9 @@
 		9327AAB7184C5152006C31C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9327AAB9184C5152006C31C9 /* SKSpriteBlendModeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKSpriteBlendModeTests.m; sourceTree = "<group>"; };
 		9327AAC3184C5180006C31C9 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		93331873184F95AD00625A7E /* RGB.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = RGB.atlas; sourceTree = "<group>"; };
 		93CE1E79184ECB0300EA1BE9 /* SKSpriteNode+UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKSpriteNode+UIImageView.h"; sourceTree = "<group>"; };
 		93CE1E7A184ECB0300EA1BE9 /* SKSpriteNode+UIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKSpriteNode+UIImageView.m"; sourceTree = "<group>"; };
-		93CE1E82184EED6E00EA1BE9 /* tex_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tex_b.png; sourceTree = "<group>"; };
-		93CE1E83184EED6E00EA1BE9 /* tex_g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tex_g.png; sourceTree = "<group>"; };
-		93CE1E84184EED6E00EA1BE9 /* tex_r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tex_r.png; sourceTree = "<group>"; };
 		93CE1E8A184F08D100EA1BE9 /* SKSpriteBlendMode-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SKSpriteBlendMode-Info.plist"; sourceTree = "<group>"; };
 		93CE1E8C184F0A4500EA1BE9 /* SKSpriteBlendModeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SKSpriteBlendModeTests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +129,7 @@
 				9327AAA3184C5152006C31C9 /* ViewController.h */,
 				9327AAA4184C5152006C31C9 /* ViewController.m */,
 				9327AAA6184C5152006C31C9 /* Images.xcassets */,
+				93331873184F95AD00625A7E /* RGB.atlas */,
 				9327AA95184C5152006C31C9 /* Supporting Files */,
 			);
 			path = SKSpriteBlendMode;
@@ -141,9 +138,6 @@
 		9327AA95184C5152006C31C9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				93CE1E84184EED6E00EA1BE9 /* tex_r.png */,
-				93CE1E83184EED6E00EA1BE9 /* tex_g.png */,
-				93CE1E82184EED6E00EA1BE9 /* tex_b.png */,
 				93CE1E8A184F08D100EA1BE9 /* SKSpriteBlendMode-Info.plist */,
 				9327AA97184C5152006C31C9 /* InfoPlist.strings */,
 				9327AA9A184C5152006C31C9 /* main.m */,
@@ -246,12 +240,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93CE1E85184EED6E00EA1BE9 /* tex_b.png in Resources */,
+				93331874184F95AD00625A7E /* RGB.atlas in Resources */,
 				9327AAA7184C5152006C31C9 /* Images.xcassets in Resources */,
-				93CE1E87184EED6E00EA1BE9 /* tex_r.png in Resources */,
 				9327AA99184C5152006C31C9 /* InfoPlist.strings in Resources */,
 				9327AAA2184C5152006C31C9 /* Main.storyboard in Resources */,
-				93CE1E86184EED6E00EA1BE9 /* tex_g.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +396,7 @@
 				GCC_PREFIX_HEADER = "SKSpriteBlendMode/SKSpriteBlendMode-Prefix.pch";
 				INFOPLIST_FILE = "SKSpriteBlendMode/SKSpriteBlendMode-Info.plist";
 				PRODUCT_NAME = SKSpriteBlendMode;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -417,6 +410,7 @@
 				GCC_PREFIX_HEADER = "SKSpriteBlendMode/SKSpriteBlendMode-Prefix.pch";
 				INFOPLIST_FILE = "SKSpriteBlendMode/SKSpriteBlendMode-Info.plist";
 				PRODUCT_NAME = SKSpriteBlendMode;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
