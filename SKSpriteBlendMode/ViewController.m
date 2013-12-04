@@ -11,6 +11,8 @@
 #import "SKSpriteNode+UIImageView.h"
 
 @interface MyScene : SKScene
+@property (nonatomic) SKBlendMode paintBlendMode;
+@property (nonatomic) SKColor *paintColor;
 
 @end
 
@@ -51,6 +53,23 @@
     return skSpriteNode;
 }
 
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    SKSpriteNode *skSpriteNode = [SKSpriteNode spriteNodeWithColor:self.paintColor size:CGSizeMake(10, 10)];
+    skSpriteNode.position = [[touches anyObject] locationInNode:self];
+    skSpriteNode.blendMode = self.paintBlendMode;
+    skSpriteNode.name = @"paintSprite";
+    [self addChild:skSpriteNode];
+}
+
+- (void)clearPaints
+{
+    [self enumerateChildNodesWithName:@"paintSprite"
+                           usingBlock:^(SKNode *node, BOOL *stop) {
+                               [node removeFromParent];
+                           }];
+}
+
 @end
 
 @interface ViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
@@ -69,30 +88,26 @@
 @end
 
 @implementation ViewController
-{
-    SKBlendMode blendMode;
-    UIColor *color;
-}
 
 - (NSArray *)colors
 {
     if (_colors == nil) {
         _colors = @[
-                   [UIColor blackColor],
-                   [UIColor darkGrayColor],
-                   [UIColor lightGrayColor],
-                   [UIColor whiteColor],
-                   [UIColor grayColor],
-                   [UIColor redColor],
-                   [UIColor greenColor],
-                   [UIColor blueColor],
-                   [UIColor cyanColor],
-                   [UIColor yellowColor],
-                   [UIColor magentaColor],
-                   [UIColor orangeColor],
-                   [UIColor purpleColor],
-                   [UIColor brownColor],
-                   [UIColor clearColor],
+                   [SKColor blackColor],
+                   [SKColor darkGrayColor],
+                   [SKColor lightGrayColor],
+                   [SKColor whiteColor],
+                   [SKColor grayColor],
+                   [SKColor redColor],
+                   [SKColor greenColor],
+                   [SKColor blueColor],
+                   [SKColor cyanColor],
+                   [SKColor yellowColor],
+                   [SKColor magentaColor],
+                   [SKColor orangeColor],
+                   [SKColor purpleColor],
+                   [SKColor brownColor],
+                   [SKColor clearColor],
                    ];
     }
     return _colors;
@@ -160,45 +175,29 @@ static SKBlendMode blendModes[] = {
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    SKView *skView = self.skView;
+    MyScene *skScene = (MyScene*)skView.scene;
+    
     if (component == 0) {
-        blendMode = blendModes[row];
+        skScene.paintBlendMode = blendModes[row];
     } else if (component == 1) {
-        color = self.colors[row];
+        skScene.paintColor = self.colors[row];
     } else {
         NSLog(@"can't happen");
         abort();
     }
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    SKScene *skScene = self.skView.scene;
-    SKSpriteNode *skSpriteNode = [SKSpriteNode spriteNodeWithColor:color size:CGSizeMake(10, 10)];
-    skSpriteNode.position = [[touches anyObject] locationInNode:skScene];
-    skSpriteNode.blendMode = blendMode;
-    skSpriteNode.name = @"inkSprite";
-    [skScene addChild:skSpriteNode];
-}
-
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-    SKScene *skScene = self.skView.scene;
-    [skScene enumerateChildNodesWithName:@"inkSprite"
-                              usingBlock:^(SKNode *node, BOOL *stop) {
-                                  [node removeFromParent];
-                              }];
+    [(MyScene*)self.skView.scene clearPaints];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    blendMode = blendModes[0];
-    color = self.colors[0];
 
-    self.colorBar.hidden = YES;
-    
     SKView *skView = self.skView;
     skView.showsDrawCount = YES;
     skView.showsNodeCount = YES;
@@ -206,7 +205,11 @@ static SKBlendMode blendModes[] = {
     
     MyScene *skScene = [MyScene sceneWithSize:skView.frame.size];
     skScene.backgroundColor = self.skView.backgroundColor;
- 
+
+    skScene.paintBlendMode = blendModes[0];
+    skScene.paintColor = self.colors[0];
+
+    self.colorBar.hidden = YES;
     SKNode *skNode = [skScene setupColorBarWithColors:self.colors size:self.colorBar.frame.size];
     skNode.position = [skView convertPoint:self.colorBar.center toScene:skScene];
 
