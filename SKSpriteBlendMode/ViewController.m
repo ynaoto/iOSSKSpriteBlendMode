@@ -213,54 +213,26 @@ static SKBlendMode blendModes[] = {
     SKNode *skNode = [skScene setupColorBarWithColors:self.colors size:self.colorBar.frame.size];
     skNode.position = [skView convertPoint:self.colorBar.center toScene:skScene];
 
-    for (UIImageView *view in self.alphaSprites) {
-        view.hidden = YES;
-        SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
-        skSpriteNode.blendMode = SKBlendModeAlpha;
-        skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
-    }
+    NSDictionary *items = @{
+                            self.alphaSprites: @(SKBlendModeAlpha),
+                            self.addSprites:   @(SKBlendModeAdd),
+                            self.subSprites:   @(SKBlendModeSubtract),
+                            self.mulSprites:   @(SKBlendModeMultiply),
+                            self.mul2Sprites:  @(SKBlendModeMultiplyX2),
+                            self.scrSprites:   @(SKBlendModeScreen),
+                            self.replSprites:  @(SKBlendModeReplace),
+                            };
 
-    for (UIImageView *view in self.addSprites) {
-        view.hidden = YES;
-        SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
-        skSpriteNode.blendMode = SKBlendModeAdd;
-        skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
-    }
-
-    for (UIImageView *view in self.subSprites) {
-        view.hidden = YES;
-        SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
-        skSpriteNode.blendMode = SKBlendModeSubtract;
-        skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
-    }
-    
-    for (UIImageView *view in self.mulSprites) {
-        view.hidden = YES;
-        SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
-        skSpriteNode.blendMode = SKBlendModeMultiply;
-        skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
-    }
-
-    for (UIImageView *view in self.mul2Sprites) {
-        view.hidden = YES;
-        SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
-        skSpriteNode.blendMode = SKBlendModeMultiplyX2;
-        skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
-    }
-
-    for (UIImageView *view in self.scrSprites) {
-        view.hidden = YES;
-        SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
-        skSpriteNode.blendMode = SKBlendModeScreen;
-        skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
-    }
-
-    for (UIImageView *view in self.replSprites) {
-        view.hidden = YES;
-        SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
-        skSpriteNode.blendMode = SKBlendModeReplace;
-        skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
-    }
+    [items enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSArray *collection = key;
+        SKBlendMode blendMode = [obj integerValue];
+        for (UIImageView *view in collection) {
+            view.hidden = YES;
+            SKSpriteNode *skSpriteNode = [skScene setupTextureSpriteWithImageView:view];
+            skSpriteNode.blendMode = blendMode;
+            skSpriteNode.position = [skView convertPoint:view.center toScene:skScene];
+        }
+    }];
 
     [skView presentScene:skScene];
 }
